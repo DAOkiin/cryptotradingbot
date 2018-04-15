@@ -1,0 +1,29 @@
+version: '3.2'
+
+services:
+  ruby:
+    build:
+      context: ./.docker/
+      dockerfile: ruby.dockerfile
+    image: 'nicofreeman:private-cryptoproject-ruby'
+    env_file: [./.config/environments/.env.app]
+    volumes:
+      - api-gems:/usr/local/bundle
+      - ./api:/usr/src/app
+    ports: ['4000:4000']
+    command: bundle exec rerun  --background "rackup --host 0.0.0.0 --port 4000 config.ru"
+
+  redis:
+    command: redis-server --port 6379
+    image: redis:3.2.4-alpine
+    volumes: ['redis_data:/var/lib/redis']
+
+  postgres:
+    env_file: [./.config/environments/.env.postgres]
+    image: postgres:9.6.1-alpine
+    volumes: ['pg_data:/var/lib/postgresql/data']
+
+volumes:
+  api-gems: {driver: local}
+  redis_data: {driver: local}
+  pg_data: {driver: local}
