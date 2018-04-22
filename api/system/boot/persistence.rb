@@ -1,4 +1,4 @@
-Api::Container.boot :persistence, namespace: true do |system|
+App::Container.boot :persistence, namespace: true do |system|
   init do
     require "sequel"
     require "rom"

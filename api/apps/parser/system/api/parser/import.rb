@@ -1,6 +1,6 @@
 require_relative "container"
 
-module Api
+module App
   module Parser
     Import = Container.injector
   end

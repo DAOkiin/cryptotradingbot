@@ -1,4 +1,4 @@
-# Api
+# App
 
 Welcome! You’ve generated an app using dry-web-roda.
 

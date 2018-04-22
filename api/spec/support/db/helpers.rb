@@ -3,11 +3,11 @@ module Test
     module_function
 
     def rom
-      Api::Container["persistence.rom"]
+      App::Container["persistence.rom"]
     end
 
     def db
-      Api::Container["persistence.db"]
+      App::Container["persistence.db"]
     end
   end
 end

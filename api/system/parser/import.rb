@@ -1,5 +1,5 @@
 require_relative "container"
 
-module Parser
-  Import = Parser::Container.injector
+module App
+  Import = App::Container.injector
 end

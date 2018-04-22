@@ -1,5 +1,5 @@
-require_relative "api/parser/container"
+require_relative "app/parser/container"
 
-Api::Parser::Container.finalize!
+App::Parser::Container.finalize!
 
-require "api/parser/web"
+require "app/parser/web"

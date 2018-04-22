@@ -1,4 +1,4 @@
-Api::Container.boot :monitor do
+App::Container.boot :monitor do
   init do
     require "dry/monitor"
   end

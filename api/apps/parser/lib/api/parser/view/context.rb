@@ -1,9 +1,9 @@
-require "api/view/context"
+require "app/view/context"
 
-module Api
+module App
   module Parser
     module View
-      class Context < Api::View::Context
+      class Context < App::View::Context
       end
     end
   end

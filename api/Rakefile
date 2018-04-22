@@ -13,11 +13,11 @@ rescue LoadError
 end
 
 def db
-  Api::Container["persistence.db"]
+  App::Container["persistence.db"]
 end
 
 def settings
-  Api::Container["settings"]
+  App::Container["settings"]
 end
 
 def database_uri
@@ -50,7 +50,7 @@ end
 
 namespace :db do
   task :setup do
-    Api::Container.init :persistence
+    App::Container.init :persistence
   end
 
   desc "Print current database schema version"

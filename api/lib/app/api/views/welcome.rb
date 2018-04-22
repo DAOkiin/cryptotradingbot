@@ -1,9 +1,9 @@
-require "app/parser/view/controller"
+require "app/api/view/controller"
 
 module App
-  module Parser
+  module Api
     module Views
-      class Welcome < View::Controller
+      class Welcome < App::Api::View::Controller
         configure do |config|
           config.template = "welcome"
         end

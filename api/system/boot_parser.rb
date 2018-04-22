@@ -5,8 +5,7 @@ begin
 rescue LoadError
 end
 
-require_relative "api/container"
+require_relative "parser/container"
 
 App::Container.finalize!
 
-require "api/web"

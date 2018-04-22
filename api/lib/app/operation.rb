@@ -2,7 +2,7 @@
 
 require "dry/transaction/operation"
 
-module Api
+module App
   class Operation
     def self.inherited(subclass)
       subclass.include Dry::Transaction::Operation

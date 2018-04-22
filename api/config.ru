@@ -1,2 +1,2 @@
 require_relative "system/boot"
-run Api::Web.freeze.app
+run App::Web.freeze.app

@@ -1,6 +1,6 @@
 # Define your routes like this:
 #
-# class Api::Parser::Web
+# class App::Parser::Web
 #   route "example" do |r|
 #     # Routes go here
 #   end

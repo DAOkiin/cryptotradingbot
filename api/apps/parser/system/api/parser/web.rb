@@ -1,7 +1,7 @@
 require "dry/web/roda/application"
 require_relative "container"
 
-module Api
+module App
   module Parser
     class Web < Dry::Web::Roda::Application
       configure do |config|
@@ -11,7 +11,7 @@ module Api
 
       opts[:root] = Pathname(__FILE__).join("../../..").realpath.dirname
 
-      use Rack::Session::Cookie, key: "api.parser.session", secret: self["core.settings"].session_secret
+      use Rack::Session::Cookie, key: "app.parser.session", secret: self["core.settings"].session_secret
 
       plugin :csrf, raise: true
       plugin :dry_view

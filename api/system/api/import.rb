@@ -1,5 +1,5 @@
 require_relative "container"
 
-module Api
-  Import = Api::Container.injector
+module App
+  Import = App::Container.injector
 end

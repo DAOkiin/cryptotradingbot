@@ -3,7 +3,7 @@ module Test
     module_function
 
     def app
-      Api::Web.app
+      App::Web.app
     end
   end
 end

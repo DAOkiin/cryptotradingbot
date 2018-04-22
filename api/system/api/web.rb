@@ -1,7 +1,7 @@
 require "dry/web/roda/application"
 require_relative "container"
 
-module Api
+module App
   class Web < Dry::Web::Roda::Application
     configure do |config|
       config.container = Container
@@ -10,7 +10,7 @@ module Api
 
     opts[:root] = Pathname(__FILE__).join("../..").realpath.dirname
 
-    use Rack::Session::Cookie, key: "api.session", secret: self["settings"].session_secret
+    use Rack::Session::Cookie, key: "app.session", secret: self["settings"].session_secret
 
     plugin :csrf, raise: true
     plugin :dry_view

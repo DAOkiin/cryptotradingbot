@@ -1,14 +1,14 @@
 require "dry/web/container"
 require "dry/system/components"
 
-module Parser
+module App
   class Container < Dry::Web::Container
     configure do
       config.name = :parser
       config.listeners = true
-      config.default_namespace = "parser"
+      config.default_namespace = "app"
       config.logger = Dry::Monitor::Logger.new(config.root.join(config.log_dir).join("#{config.name}_#{config.env}.log").realpath)
-      config.auto_register = %w[lib/parser]
+      config.auto_register = %w[lib/app/parser]
     end
 
     load_paths! "lib"

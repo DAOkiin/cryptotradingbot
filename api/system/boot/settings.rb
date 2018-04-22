@@ -1,4 +1,4 @@
-Api::Container.boot :settings, from: :system do
+App::Container.boot :settings, from: :system do
   before :init do
     require "types"
   end
