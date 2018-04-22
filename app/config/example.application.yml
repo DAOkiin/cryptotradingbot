@@ -1,0 +1,10 @@
+development: &base
+  session_secret: somelooooooooooooooongstring
+  database_url: "postgres://user:password@postgres/app_development"
+  errbit_host: https://somehost.com
+  errbit_projectkey: ugotitfromerrbit
+test:
+  <<: *base
+  database_url: "postgres://user:password@postgres/app_test"
+production:
+  <<: *base

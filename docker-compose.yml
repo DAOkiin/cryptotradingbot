@@ -9,7 +9,7 @@ services:
     env_file: [./.config/environments/.env.app]
     volumes:
       - api-gems:/usr/local/bundle
-      - ./api:/usr/src/app
+      - ./app:/usr/src/app
     ports: ['4000:4000']
     command: bundle exec rerun  --background "rackup --host 0.0.0.0 --port 4000 config.ru"
 

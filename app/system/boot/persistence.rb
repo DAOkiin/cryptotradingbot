@@ -4,7 +4,7 @@ App::Container.boot :persistence, namespace: true do |system|
     require "rom"
     require "rom/sql"
 
-    use :monitor, :settings
+    use :monitor, :config
 
     ROM::SQL.load_extensions :postgres
 
@@ -13,7 +13,7 @@ App::Container.boot :persistence, namespace: true do |system|
 
     rom_config = ROM::Configuration.new(
       :sql,
-      system[:settings].database_url,
+      system[:config].database_url,
       extensions: %i[error_sql pg_array pg_json],
     )
 

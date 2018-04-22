@@ -17,7 +17,7 @@ def db
 end
 
 def settings
-  App::Container["settings"]
+  App::Container["config"]
 end
 
 def database_uri
@@ -49,6 +49,11 @@ def database_params
 end
 
 namespace :db do
+
+  task :build do |t, args|
+    puts "Current env is #{ENV['RAKE_ENV']}"
+  end
+
   task :setup do
     App::Container.init :persistence
   end
