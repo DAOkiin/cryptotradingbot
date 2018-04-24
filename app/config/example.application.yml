@@ -3,6 +3,8 @@ development: &base
   database_url: "postgres://user:password@postgres/app_development"
   errbit_host: https://somehost.com
   errbit_projectkey: ugotitfromerrbit
+  binance_key: binance_key
+  binance_secret: binance_secret
 test:
   <<: *base
   database_url: "postgres://user:password@postgres/app_test"

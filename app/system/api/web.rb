@@ -10,7 +10,7 @@ module App
 
     opts[:root] = Pathname(__FILE__).join("../..").realpath.dirname
 
-    use Rack::Session::Cookie, key: "app.session", secret: self["settings"].session_secret
+    use Rack::Session::Cookie, key: "app.session", secret: self["config"].session_secret
 
     plugin :csrf, raise: true
     plugin :dry_view

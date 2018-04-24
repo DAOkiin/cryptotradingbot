@@ -42,3 +42,6 @@ end
 
 # Error handling
 gem 'airbrake-ruby', '~> 2.8'
+
+# Echanges API
+gem 'binance'
