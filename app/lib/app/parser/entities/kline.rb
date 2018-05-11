@@ -5,6 +5,7 @@ require "types"
 module App
   module Parser
     module Entities
+      # Kline entity
       class Kline < Dry::Struct
         attribute :open_time, Types::Strict::Int
         attribute :open, Types::Strict::Decimal
@@ -16,6 +17,7 @@ module App
         attribute :symbol1, Types::Strict::String
         attribute :symbol2, Types::Strict::String
         attribute :pair, Types::Strict::String
+        attribute :interval, Types::Strict::String
       end
     end
   end
