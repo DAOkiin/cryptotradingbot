@@ -6,13 +6,15 @@ ROM::SQL.migration do
       column :symbol1, String, size: 10, null: false
       column :symbol2, String, size: 10, null: false
       column :pair, String, size: 20, null: false
-      column :open_time, Integer
+      column :open_time, :Bignum, unique: true
       column :open, BigDecimal
       column :high, BigDecimal
       column :low, BigDecimal
       column :close, BigDecimal
       column :volume, BigDecimal
-      column :close_time, Integer
+      column :close_time, :Bignum
+
+      index :open_time
     end
   end
 end
