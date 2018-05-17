@@ -11,7 +11,7 @@ module App
             params[:c1] = 'BTC'
             params[:c2] = 'USDT'
             params[:interval] = '1m'
-            params[:limit] = 1
+            params[:limit] = 500
             params[:start_time] = nil
           end
 

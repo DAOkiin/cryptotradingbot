@@ -11,39 +11,39 @@ module App
       class GetKlines < App::Operation
         include App::Import[
           binance: 'exchanges.binance.rest',
-          kline1m: 'persistence.repositories.kline1m'
+          kline1m: 'persistence.repositories.kline1m',
+          construct_kline: 'operations.construct_klines',
+          bus: 'bus'
         ]
-        def call(data)
-          puts "get_klines. #{data[:random21]}"
-          open_time = kline1m.newest.close_time + 1
-          pair = data[:c1] + data[:c2]
-          options = { symbol: pair, interval: data[:interval], limit: 500, startTime: open_time }
-          result = []
+        def call(params)
+          begin
+            open_time = kline1m.newest.close_time + 1
+          rescue ROM::TupleCountMismatchError
+            open_time = 1
+          end
+          pair = params[:c1] + params[:c2]
+          options = { symbol: pair, interval: params[:interval], limit: 500, startTime: open_time }
+
           puts 'Started parsing exchange klines'
-          print "from #{DateTime.strptime(options[:startTime].to_s, '%Q').to_s}", "\r"
+          puts "from #{DateTime.strptime(options[:startTime].to_s, '%Q').to_s}"
           begin
             responce = binance.klines(options)
-
             if responce.is_a? Array
-              result += responce
+              Celluloid::Actor[:event_listener].async.on_binance_rest_klines({klines: responce, params: params})
               options[:startTime] = responce[-1][6] + 1
               $stdout.flush
-              print "from #{DateTime.strptime(options[:startTime].to_s, '%Q').to_s}", "\r"
+              puts "from #{DateTime.strptime(options[:startTime].to_s, '%Q').to_s}"
             else
               raise StandardError, responce
             end
-
             sleep 0.5
           rescue StandardError => e
             Airbrake.notify(e)
           end while responce.length == 500
+
           $stdout.flush
-          print "\nAll done\n"
           if responce.is_a? Array
-            puts result.size
-            data[:rest_klines] += result
-            data[:source] = 'binance.rest.kline'
-            Success(data)
+            Success(params)
           else
             Failure(responce)
           end
