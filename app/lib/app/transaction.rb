@@ -1,3 +1,4 @@
+# auto_register: false
 
 require "dry/transaction"
 
