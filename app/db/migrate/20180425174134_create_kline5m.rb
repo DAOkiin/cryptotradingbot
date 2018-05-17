@@ -1,6 +1,6 @@
 ROM::SQL.migration do
   change do
-    create_table :kline1m do
+    create_table :kline5m do
       primary_key :id
 
       column :symbol1, String, size: 10, null: false

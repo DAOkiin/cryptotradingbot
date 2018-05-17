@@ -4,17 +4,13 @@ require "dry/system/components"
 module App
   class Container < Dry::Web::Container
     configure do
-      config.name = :parser
+      config.name = :calculator
       config.listeners = true
-      config.default_namespace = "app.parser"
+      config.default_namespace = "app.calculator"
       config.logger = Dry::Monitor::Logger.new(config.root.join(config.log_dir).join("#{config.name}_#{config.env}.log").realpath)
-      config.auto_register = %w[lib/app/parser]
+      config.auto_register = %w[lib/app/calculator]
     end
 
     load_paths! "lib"
   end
 end
-
-require_relative 'exchanges'
-require_relative 'celluloid'
-require_relative 'bus'

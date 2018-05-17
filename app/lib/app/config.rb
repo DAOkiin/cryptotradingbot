@@ -11,6 +11,9 @@ module App
     attribute :errbit_host, RequiredString
     attribute :errbit_projectkey, RequiredString
 
+    attribute :binance_key, RequiredString
+    attribute :binance_secret, RequiredString
+
     def self.load(root, name, env)
       path = root.join("config").join("#{name}.yml")
       yaml = File.exist?(path) ? YAML.load_file(path) : {}

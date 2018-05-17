@@ -23,6 +23,15 @@ services:
     image: postgres:9.6.1-alpine
     volumes: ['pg_data:/var/lib/postgresql/data']
 
+  ungit:
+    command: ungit --no-launchBrowser --forcedLaunchPath=/var/www
+    image: 'nicofreeman/private:ungit'
+    ports: ["8400:8448"]
+    volumes:
+      - .:/var/www/
+      - /etc/ssh/ssh_config:/etc/ssh/ssh_config
+      - /home/deployer/.ssh:/home/node/.ssh
+
 volumes:
   api-gems: {driver: local}
   redis_data: {driver: local}
