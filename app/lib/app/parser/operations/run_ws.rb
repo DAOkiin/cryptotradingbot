@@ -13,18 +13,8 @@ module App
           bus: 'bus'
         ]
         def call(params)
-          message = proc { |e|
-            App::Container['bus'].publish('binance.ws.kline', message: e,
-                                                              params: params)
-          }
-          close = proc { |e|
-            Airbrake.notify("WebSocket closed because of #{e.inspect}")
-            print "\nWS closed\n"
-          }
-
-          methods = { message: message, close: close }
-          supervisor[:ws].async.start_ws(params, client, methods)
           bus.subscribe(event_listener)
+          supervisor[:ws].async.start_ws(params, client)
           Success(params)
         end
       end

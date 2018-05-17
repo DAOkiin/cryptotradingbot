@@ -10,10 +10,12 @@ module App
           include App::Import[
             kline1m: 'persistence.repositories.kline1m'
           ]
-          def call(params)
-            kline1m.create params[:klines]
-            params[:persisted] = true
-            Success(params)
+          def call(data)
+            if kline1m.create(data[:klines])
+              Success("[OK] Successfully persisted #{data[:klines].size} klines")
+            else
+              Failure('[ERROR] Something gone wrong when persist klines')
+            end
           end
         end
       end
