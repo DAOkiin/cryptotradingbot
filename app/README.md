@@ -1,4 +1,4 @@
-Application based on roda, rom-rb and dry-rb
+Application based on dry-rb, rom-rb and celluloid
 
 ### First-time setup
 
