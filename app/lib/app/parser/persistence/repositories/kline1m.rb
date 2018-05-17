@@ -38,6 +38,10 @@ module App
           def where_big(val)
             kline1m.where {open_time > val}
           end
+
+          def limit(i)
+            kline1m.reverse.limit(i).as_hash
+          end
         end
       end
     end
