@@ -1,4 +1,4 @@
-require 'celluloid'
+require 'celluloid/current'
 
 require_relative 'actors/binance_ws'
 require_relative 'actors/event_listener'
@@ -6,9 +6,9 @@ require_relative 'actors/event_listener'
 App::Container.finalize(:celluloid) do |container|
   start do
 
-    class Root < Celluloid::SupervisionGroup
-      supervise Actors::EventListener, as: :event_listener
-      supervise Actors::BinanceWs, as: :ws
+    class Root < Celluloid::Supervision::Container
+      supervise type: Actors::EventListener, as: :event_listener
+      supervise type: Actors::BinanceWs, as: :ws
     end
 
     container.register('celluloid.supervisor', Root.run!)

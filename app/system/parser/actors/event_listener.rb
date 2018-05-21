@@ -3,6 +3,7 @@ module Actors
     include Celluloid
 
     def on_binance_ws_kline(event)
+      # if kandle is closed
       if event[:parsed]['k']['x']
         data = {}
         data[:source] = 'binance.ws.kline'
